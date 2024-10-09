@@ -18,3 +18,4 @@ pandas==2.1.1
 
 torch==2.4.1
 
+psycopg2==2.9.8
