@@ -1,9 +1,10 @@
 import streamlit as st
 import requests
 
-# フォームの設定
+# ヘッダー
 st.title("レコビュ - レビューを投稿して次に読む本を見つけよう")
 
+# フォーム
 st.subheader("レビューを投稿する")
 with st.form("review_form"):
     book_title = st.text_input("本のタイトル")
@@ -19,13 +20,14 @@ if submit_button:
         "positive_points": positive_points,
         "negative_points": negative_points
     }
-    response = requests.post("http://localhost:8000/submit_review/", json=data)
-
-    if response.status_code == 200:
-        result = response.json()
-        st.success(f"レビューを投稿しました: {book_title}")
-        st.subheader("次におすすめの本")
-        st.write(f"おすすめの本: {result['recommended_book']}")
-    else:
-        st.error("レビューの投稿に失敗しました。")
-
+    try:
+        response = requests.post("http://localhost:8000/submit_review/", json=data)
+        if response.status_code == 200:
+            result = response.json()
+            st.success(f"レビューを投稿しました: {book_title}")
+            st.subheader("次におすすめの本")
+            st.write(f"おすすめの本: {result['recommended_book']}")
+        else:
+            st.error("レビューの投稿に失敗しました。")
+    except Exception as e:
+        st.error(f"エラーが発生しました: {e}")

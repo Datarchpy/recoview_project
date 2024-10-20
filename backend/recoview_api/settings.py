@@ -6,5 +6,13 @@ DATABASES = {
         'PASSWORD': 'dapy2011gc',  # 設定したPostgreSQLのパスワード
         'HOST': 'localhost',
         'PORT': '5432',
+        'OPTIONS': {
+            'client_encoding': 'UTF8',
+        }
     }
 }
+
+# settings.py
+DEBUG = False  # または True (開発時)
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']

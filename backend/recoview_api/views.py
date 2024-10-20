@@ -18,5 +18,5 @@ def submit_review(request):
     review.save()
 
     # 仮のレコメンド結果を返す
-    recommended_book = "サンプル本タイトル"
+    recommended_book = "おすすめ本：サンプルタイトル"
     return Response({"recommended_book": recommended_book})
